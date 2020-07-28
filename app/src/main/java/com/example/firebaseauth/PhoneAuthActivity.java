@@ -36,7 +36,7 @@ public class PhoneAuthActivity extends BasicActivity implements View.OnClickList
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
-
+        int n=7;
         mBinding.buttonStartVerification.setOnClickListener(this);
         mBinding.buttonVerifyPhone.setOnClickListener(this);
         mBinding.buttonResend.setOnClickListener(this);
