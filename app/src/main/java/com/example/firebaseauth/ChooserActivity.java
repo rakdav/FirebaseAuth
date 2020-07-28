@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class ChooserActivity extends AppCompatActivity implements View.OnClickListener {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class ChooserActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +18,15 @@ public class ChooserActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.email).setOnClickListener(this);
         findViewById(R.id.phone).setOnClickListener(this);
         findViewById(R.id.google).setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
     }
 
     @Override

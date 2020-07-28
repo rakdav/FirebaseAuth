@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.example.firebaseauth.databinding.ActivityPhoneAuthBinding;
 
+import java.util.concurrent.TimeUnit;
+
 public class PhoneAuthActivity extends BasicActivity implements View.OnClickListener {
     private static final String TAG = "PhoneAuthActivity";
 
@@ -20,6 +22,10 @@ public class PhoneAuthActivity extends BasicActivity implements View.OnClickList
     private static final int STATE_VERIFY_SUCCESS = 4;
     private static final int STATE_SIGNIN_FAILED = 5;
     private static final int STATE_SIGNIN_SUCCESS = 6;
+
+    private boolean mVerificationInProgress = false;
+    private String mVerificationId;
+
     private ActivityPhoneAuthBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class PhoneAuthActivity extends BasicActivity implements View.OnClickList
         mBinding.buttonResend.setOnClickListener(this);
         mBinding.signOutButton.setOnClickListener(this);
     }
+
 
 //    private void updateUI(int uiState) {
 //        updateUI(uiState, mAuth.getCurrentUser(), null);
